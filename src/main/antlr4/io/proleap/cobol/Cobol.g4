@@ -1175,7 +1175,7 @@ bindStatement
    ;
 
 obtainStatement
-   : 'OBTAIN' ('FIRST' | 'NEXT' | 'OWNER') fileName 'WITHIN' fileName ((ON IDENTIFIER) (GO TO paragraphName)) DOT_FS
+   : 'OBTAIN' ('FIRST' | 'NXT' | 'OWNER') fileName 'WITHIN' fileName ((ON IDENTIFIER) (GO TO paragraphName))* DOT_FS
    ;
 
 //initVimaiZ
@@ -1183,7 +1183,7 @@ obtainStatement
 //    ;
 
 acceptStatement
-   : ACCEPT identifier (acceptFromDateStatement | acceptFromEscapeKeyStatement | acceptFromMnemonicStatement | acceptMessageCountStatement)? onExceptionClause? notOnExceptionClause? END_ACCEPT?
+   : ACCEPT identifier (acceptFromDateStatement | acceptFromEscapeKeyStatement | acceptFromMnemonicStatement | acceptMessageCountStatement)? (CURRENCY)? onExceptionClause? notOnExceptionClause? END_ACCEPT?
    ;
 
 acceptFromDateStatement
@@ -1547,7 +1547,7 @@ ifStatement
    ;
 
 ifThen
-   : THEN? (NEXT SENTENCE | statement*)
+   : THEN? ('NXT' SENTENCE | statement*)
    ;
 
 ifElse
