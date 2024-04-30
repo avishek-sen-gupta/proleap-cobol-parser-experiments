@@ -24,7 +24,7 @@ public class IdmsStatementTest extends CobolTestBase {
 
 	@Test
 	public void testCopyIdms() throws Exception {
-		final File inputFile = new File("/Users/asgupta/code/proleap-cobol-parser/proleap-cobol-parser/src/test/resources/io/proleap/cobol/asg/procedure/accept/mbrdi-sample-code/preprocessed/program V7596428.txt");
+		final File inputFile = new File("/Users/asgupta/code/mbrdi-proleap/from-github/proleap-cobol-parser-experiments/src/test/resources/io/proleap/cobol/asg/procedure/accept/mbrdi-sample-code/preprocessed/program V7596428.txt");
 //		final File inputFile = new File("src/test/resources/io/proleap/cobol/asg/procedure/accept/IdmsStatement.cbl");
 //		final File inputFile = new File("src/test/resources/io/proleap/cobol/asg/procedure/accept/Copybook V75CW880.txt");
         CobolParserRunnerImpl parserRunner = new CobolParserRunnerImpl();

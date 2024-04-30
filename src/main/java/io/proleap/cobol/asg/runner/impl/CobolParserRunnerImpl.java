@@ -218,7 +218,7 @@ public class CobolParserRunnerImpl implements CobolParserRunner {
 
 		// pass the tokens to the parser
 		final CobolParser parser = new CobolParser(tokens);
-
+        parser.setTrace(true);
 		if (!params.getIgnoreSyntaxErrors()) {
 			// register an error listener, so that preprocessing stops on errors
 			parser.removeErrorListeners();

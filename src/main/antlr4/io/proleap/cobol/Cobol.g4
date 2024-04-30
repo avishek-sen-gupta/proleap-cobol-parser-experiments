@@ -1161,10 +1161,26 @@ sentence
    ;
 
 statement
-   : acceptStatement | addStatement | alterStatement | callStatement | cancelStatement | closeStatement | computeStatement | continueStatement | deleteStatement | disableStatement | displayStatement | divideStatement | enableStatement | entryStatement | evaluateStatement | exhibitStatement | execCicsStatement | execSqlStatement | execSqlImsStatement | exitStatement | generateStatement | gobackStatement | goToStatement | ifStatement | initializeStatement | initiateStatement | inspectStatement | mergeStatement | moveStatement | multiplyStatement | nextSentenceStatement | openStatement | performStatement | purgeStatement | readStatement | receiveStatement | releaseStatement | returnStatement | rewriteStatement | searchStatement | sendStatement | setStatement | sortStatement | startStatement | stopStatement | stringStatement | subtractStatement | terminateStatement | unstringStatement | writeStatement
+   : obtainStatement | readyStatement | bindStatement | acceptStatement | addStatement | alterStatement | callStatement | cancelStatement | closeStatement | computeStatement | continueStatement | deleteStatement | disableStatement | displayStatement | divideStatement | enableStatement | entryStatement | evaluateStatement | exhibitStatement | execCicsStatement | execSqlStatement | execSqlImsStatement | exitStatement | generateStatement | gobackStatement | goToStatement | ifStatement | initializeStatement | initiateStatement | inspectStatement | mergeStatement | moveStatement | multiplyStatement | nextSentenceStatement | openStatement | performStatement | purgeStatement | readStatement | receiveStatement | releaseStatement | returnStatement | rewriteStatement | searchStatement | sendStatement | setStatement | sortStatement | startStatement | stopStatement | stringStatement | subtractStatement | terminateStatement | unstringStatement | writeStatement
    ;
 
 // accept statement
+
+readyStatement
+   : 'READY' fileName (('USAGE-MODE' IS) ('PROTECTED')? ('UPDATE' | 'RETRIEVAL'))? DOT_FS
+   ;
+
+bindStatement
+   : 'BIND' fileName DOT_FS
+   ;
+
+obtainStatement
+   : 'OBTAIN' ('FIRST' | 'NEXT' | 'OWNER') fileName 'WITHIN' fileName ((ON IDENTIFIER) (GO TO paragraphName)) DOT_FS
+   ;
+
+//initVimaiZ
+//    : 'INIT-VIMAI-Z' DOT_FS
+//    ;
 
 acceptStatement
    : ACCEPT identifier (acceptFromDateStatement | acceptFromEscapeKeyStatement | acceptFromMnemonicStatement | acceptMessageCountStatement)? onExceptionClause? notOnExceptionClause? END_ACCEPT?
@@ -2585,6 +2601,7 @@ cobolWord
    | WAIT
    | YEAR | YYYYMMDD | YYYYDDD
    | ZERO_FILL
+   | IS
    ;
 
 literal
