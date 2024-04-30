@@ -1175,7 +1175,7 @@ bindStatement
    ;
 
 obtainStatement
-   : 'OBTAIN' ('FIRST' | 'NXT' | 'OWNER') fileName 'WITHIN' fileName ((ON IDENTIFIER) (GO TO paragraphName))* DOT_FS
+   : 'OBTAIN' (('FIRST' | 'NXT' | 'CLC' | 'CURRENT') fileName | 'OWNER') (('WITHIN' fileName)? ((ON IDENTIFIER) (GO TO paragraphName))*)? DOT_FS?
    ;
 
 //initVimaiZ
