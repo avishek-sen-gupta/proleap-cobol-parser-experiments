@@ -1547,7 +1547,7 @@ ifStatement
    ;
 
 ifThen
-   : THEN? ('NXT' SENTENCE | statement*)
+   : THEN? (NEXT SENTENCE | statement*)
    ;
 
 ifElse
