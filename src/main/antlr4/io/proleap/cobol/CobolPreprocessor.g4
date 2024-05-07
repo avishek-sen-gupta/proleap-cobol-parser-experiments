@@ -16,7 +16,8 @@
 grammar CobolPreprocessor;
 
 startRule
-   : (compilerOptions | copyStatement | addRecordStatement | deleteRecordStatement | delStatement | execCicsStatement | execSqlStatement | execSqlImsStatement | replaceOffStatement | replaceArea | ejectStatement | skipStatement | titleStatement | charDataLine | NEWLINE)* EOF
+   : (compilerOptions | copyStatement | deleteRecordStatement | delStatement | execCicsStatement | execSqlStatement | execSqlImsStatement | replaceOffStatement | replaceArea | ejectStatement | skipStatement | titleStatement | charDataLine | NEWLINE)* EOF
+//   : (compilerOptions | copyStatement | addRecordStatement | deleteRecordStatement | delStatement | execCicsStatement | execSqlStatement | execSqlImsStatement | replaceOffStatement | replaceArea | ejectStatement | skipStatement | titleStatement | charDataLine | NEWLINE)* EOF
    ;
 
 // compiler options
@@ -196,9 +197,9 @@ delStatement
 deleteRecordStatement
     : 'DEL' ('RECORD' | 'MODULE') copySource ('VERSION' literal)?
     ;
-addRecordStatement
-    : 'ADD' ('RECORD' | 'MODULE') copySource ('VERSION' literal)?
-    ;
+//addRecordStatement
+//    : 'ADD' ('RECORD' | 'MODULE') copySource ('VERSION' literal)?
+//    ;
 
 // replace statement
 

@@ -92,8 +92,12 @@ environmentDivision
    ;
 
 environmentDivisionBody
-   : configurationSection | specialNamesParagraph | inputOutputSection
+   : configurationSection | specialNamesParagraph | inputOutputSection | idmsControlSection
    ;
+
+idmsControlSection
+    : 'IDMS-CONTROL' SECTION DOT_FS
+    ;
 
 // -- configuration section ----------------------------------
 
@@ -493,7 +497,7 @@ workingStorageSection
 // -- linkage section ----------------------------------
 
 linkageSection
-   : LINKAGE SECTION DOT_FS dataDescriptionEntry*
+   : LINKAGE SECTION DOT_FS deleteRecordStatement* addRecordStatement* dataDescriptionEntry*
    ;
 
 // -- communication section ----------------------------------
@@ -1161,8 +1165,16 @@ sentence
    ;
 
 statement
-   : obtainStatement | readyStatement | bindStatement | acceptStatement | addStatement | alterStatement | callStatement | cancelStatement | closeStatement | computeStatement | continueStatement | deleteStatement | disableStatement | displayStatement | divideStatement | enableStatement | entryStatement | evaluateStatement | exhibitStatement | execCicsStatement | execSqlStatement | execSqlImsStatement | exitStatement | generateStatement | gobackStatement | goToStatement | ifStatement | initializeStatement | initiateStatement | inspectStatement | mergeStatement | moveStatement | multiplyStatement | nextSentenceStatement | openStatement | performStatement | purgeStatement | readStatement | receiveStatement | releaseStatement | returnStatement | rewriteStatement | searchStatement | sendStatement | setStatement | sortStatement | startStatement | stopStatement | stringStatement | subtractStatement | terminateStatement | unstringStatement | writeStatement
+   : obtainStatement | deleteRecordStatement | readyStatement | bindStatement | acceptStatement | addStatement | alterStatement | callStatement | cancelStatement | closeStatement | computeStatement | continueStatement | deleteStatement | disableStatement | displayStatement | divideStatement | enableStatement | entryStatement | evaluateStatement | exhibitStatement | execCicsStatement | execSqlStatement | execSqlImsStatement | exitStatement | generateStatement | gobackStatement | goToStatement | ifStatement | initializeStatement | initiateStatement | inspectStatement | mergeStatement | moveStatement | multiplyStatement | nextSentenceStatement | openStatement | performStatement | purgeStatement | readStatement | receiveStatement | releaseStatement | returnStatement | rewriteStatement | searchStatement | sendStatement | setStatement | sortStatement | startStatement | stopStatement | stringStatement | subtractStatement | terminateStatement | unstringStatement | writeStatement
    ;
+
+deleteRecordStatement
+    : 'DEL' ('RECORD' | 'MODULE') fileName ('VERSION' literal)? DOT_FS
+    ;
+
+addRecordStatement
+    : 'ADD' ('RECORD' | 'MODULE') fileName ('VERSION' literal)? DOT_FS
+    ;
 
 // accept statement
 
