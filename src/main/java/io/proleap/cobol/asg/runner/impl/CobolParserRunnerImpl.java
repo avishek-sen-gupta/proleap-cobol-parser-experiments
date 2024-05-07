@@ -17,6 +17,11 @@ import java.util.Scanner;
 
 import org.antlr.v4.runtime.CharStreams;
 import org.antlr.v4.runtime.CommonTokenStream;
+import org.antlr.v4.runtime.ParserRuleContext;
+import org.antlr.v4.runtime.Token;
+import org.antlr.v4.runtime.tree.ErrorNode;
+import org.antlr.v4.runtime.tree.ParseTreeListener;
+import org.antlr.v4.runtime.tree.TerminalNode;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -215,10 +220,37 @@ public class CobolParserRunnerImpl implements CobolParserRunner {
 
 		// get a list of matched tokens
 		final CommonTokenStream tokens = new CommonTokenStream(lexer);
-
-		// pass the tokens to the parser
-		final CobolParser parser = new CobolParser(tokens);
-        parser.setTrace(true);
+        // pass the tokens to the parser
+//        for (Token token = lexer.nextToken();
+//             token.getType() != Token.EOF;
+//             token = lexer.nextToken())
+//        {
+//            System.out.println("Token = " + token.getText());
+//        }
+        final CobolParser parser = new CobolParser(tokens);
+//        parser.addParseListener(new ParseTreeListener() {
+//            @Override
+//            public void visitTerminal(TerminalNode terminalNode) {
+//
+//            }
+//
+//            @Override
+//            public void visitErrorNode(ErrorNode errorNode) {
+//
+//            }
+//
+//            @Override
+//            public void enterEveryRule(ParserRuleContext parserRuleContext) {
+//                System.out.println("Entering a rule==============================");
+//                System.out.println(parserRuleContext.toStringTree());
+//            }
+//
+//            @Override
+//            public void exitEveryRule(ParserRuleContext parserRuleContext) {
+//
+//            }
+//        });
+//        parser.setTrace(true);
 		if (!params.getIgnoreSyntaxErrors()) {
 			// register an error listener, so that preprocessing stops on errors
 			parser.removeErrorListeners();
@@ -244,6 +276,9 @@ public class CobolParserRunnerImpl implements CobolParserRunner {
 		}
 
 		scanner.close();
+        for (String line: result) {
+            System.out.println(line);
+        }
 		return result;
 	}
 }

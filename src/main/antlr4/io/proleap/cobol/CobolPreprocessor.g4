@@ -16,7 +16,7 @@
 grammar CobolPreprocessor;
 
 startRule
-   : (compilerOptions | copyStatement | delStatement | execCicsStatement | execSqlStatement | execSqlImsStatement | replaceOffStatement | replaceArea | ejectStatement | skipStatement | titleStatement | charDataLine | NEWLINE)* EOF
+   : (compilerOptions | copyStatement | addRecordStatement | deleteRecordStatement | delStatement | execCicsStatement | execSqlStatement | execSqlImsStatement | replaceOffStatement | replaceArea | ejectStatement | skipStatement | titleStatement | charDataLine | NEWLINE)* EOF
    ;
 
 // compiler options
@@ -172,7 +172,7 @@ execSqlImsStatement
 // copy statement
 
 copyStatement
-   : COPY MOMBASA copySource (NEWLINE* (directoryPhrase | familyPhrase | replacingPhrase | SUPPRESS))* NEWLINE* DOT
+   : COPY IDMS 'RECORD'? copySource (NEWLINE* (directoryPhrase | familyPhrase | replacingPhrase | SUPPRESS))* NEWLINE* DOT
    ;
 
 copySource
@@ -192,6 +192,13 @@ replacingPhrase
 delStatement
    : DEL
    ;
+
+deleteRecordStatement
+    : 'DEL' ('RECORD' | 'MODULE') copySource ('VERSION' literal)?
+    ;
+addRecordStatement
+    : 'ADD' ('RECORD' | 'MODULE') copySource ('VERSION' literal)?
+    ;
 
 // replace statement
 
@@ -404,7 +411,7 @@ GDS : G D S;
 GRAPHIC : G R A P H I C;
 HOOK : H O O K;
 IN : I N;
-MOMBASA : I D M S;
+IDMS : I D M S;
 INTDATE : I N T D A T E;
 JA : J A;
 JP : J P;

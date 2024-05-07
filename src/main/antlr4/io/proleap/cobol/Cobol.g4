@@ -1174,10 +1174,16 @@ bindStatement
    : 'BIND' fileName DOT_FS
    ;
 
-obtainStatement
-   : 'OBTAIN' (('FIRST' | 'NXT' | 'CLC' | 'CURRENT') fileName | 'OWNER') (('WITHIN' fileName)? ((ON IDENTIFIER) (GO TO paragraphName | NEXT SENTENCE))*)? DOT_FS?
+//obtainStatement
+//   : 'OBTAIN' (('FIRST' | 'NXT' | 'CLC' | 'CURRENT' | 'LAST') fileName | 'OWNER') (('WITHIN' fileName)? ((ON IDENTIFIER) (GO TO paragraphName | NEXT SENTENCE))*)? DOT_FS?
+//   ;
+obtainStatement:
+ 'OBTAIN' (('FIRST' | 'NXT' | 'CLC' | 'CURRENT' | 'LAST') fileName | 'OWNER') ('WITHIN' fileName)?
    ;
 
+oneOfThese
+    : (('FIRST' | 'NXT' | 'CLC' | 'CURRENT' | 'LAST') fileName | 'OWNER')
+    ;
 //initVimaiZ
 //    : 'INIT-VIMAI-Z' DOT_FS
 //    ;
@@ -1542,12 +1548,12 @@ goToDependingOnStatement
 
 // if statement
 
-ifStatement
-   : IF condition ifThen ifElse? END_IF?
+ifStatement:
+    IF condition ifThen ifElse? (END_IF|DOT_FS)
    ;
 
-ifThen
-   : THEN? (NEXT SENTENCE | statement*)
+ifThen:
+    THEN? (NEXT SENTENCE | statement*)
    ;
 
 ifElse
@@ -3235,6 +3241,10 @@ fragment STRINGLITERAL :
 fragment DBCSLITERAL :
 	[GN] '"' (~["\n\r] | '""' | '\'')* '"'
 	| [GN] '\'' (~['\n\r] | '\'\'' | '"')* '\''
+;
+
+fragment CARRIAGE :
+    '\n'
 ;
 
 LEVEL_NUMBER_66 : '66';

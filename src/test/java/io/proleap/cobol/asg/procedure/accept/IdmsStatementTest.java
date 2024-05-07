@@ -24,13 +24,14 @@ public class IdmsStatementTest extends CobolTestBase {
 
 	@Test
 	public void testCopyIdms() throws Exception {
-		final File inputFile = new File("/Users/asgupta/code/mbrdi-proleap/from-github/proleap-cobol-parser-experiments/src/test/resources/io/proleap/cobol/asg/procedure/accept/mbrdi-sample-code/preprocessed/program V7596428.txt");
+//		final File inputFile = new File("/Users/asgupta/code/mbrdi-proleap/from-github/proleap-cobol-parser-experiments/src/test/resources/io/proleap/cobol/asg/procedure/accept/mbrdi-sample-code/preprocessed/program V7596428.txt");
+		final File inputFile = new File("/Users/asgupta/code/mbrdi-proleap/from-github/proleap-cobol-parser-experiments/src/test/resources/io/proleap/cobol/asg/procedure/accept/mbrdi-poc/V7523438.txt");
 //		final File inputFile = new File("src/test/resources/io/proleap/cobol/asg/procedure/accept/IdmsStatement.cbl");
 //		final File inputFile = new File("src/test/resources/io/proleap/cobol/asg/procedure/accept/Copybook V75CW880.txt");
         CobolParserRunnerImpl parserRunner = new CobolParserRunnerImpl();
         CobolParserParams params = parserRunner.createDefaultParams(CobolSourceFormatEnum.VARIABLE, inputFile);
 
-        params.setFormat(CobolSourceFormatEnum.VARIABLE);
+        params.setFormat(CobolSourceFormatEnum.FIXED);
         params.setIgnoreSyntaxErrors(false);
         final Program program = parserRunner.analyzeFile(inputFile, params);
 
